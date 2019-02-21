@@ -6,6 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 
+# Hugo
+public/
+resources/
+
 # Firebase cache
 .firebase/
 
