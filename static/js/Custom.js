@@ -219,8 +219,7 @@ function draw() {
 
 init();
 
-
-
+// By uptimerobot
 function getMonitorsByApi(url = '', setGet = {}) {
     let domainStatus = {
             "0": "Paused",
@@ -245,7 +244,6 @@ function getMonitorsByApi(url = '', setGet = {}) {
         };
 
     fetch(url, setGet).then(res => res.json()).then(res => {
-        console.log(res);
         if (res.stat === 'ok') {
             var res = res.monitors,
                 len = res.length,
@@ -266,7 +264,6 @@ function getMonitorsByApi(url = '', setGet = {}) {
                 timeTotal[2] += Number(uptime[2]);
             }
             $table.innerHTML = html;
-
             var data = {
                 datasets: [{
                     data: [statusCount[2], statusCount[9], statusCount[0]],
