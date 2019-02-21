@@ -1,0 +1,79 @@
+{{- define "main"}}
+<div id="root">
+    <div id="main">
+        <img src="/img/logo.png" class="logo">
+        <div class="ui horizontal inverted divider">
+            <h2>Monitors</h2>
+        </div>
+        <table class="ui very basic collapsing celled inverted table unstackable">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Last 24 Hours</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td>
+                        Get…
+                    </td>
+                    <td>
+                        Loading…
+                    </td>
+                    <td>
+                        Loading…
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="ui two column stackable grid container">
+            <div class="column">
+                <div class="ui horizontal inverted divider">
+                    <h2>Quick Stats</h2>
+                </div>
+                <div class="domainChart">
+                    <canvas id="myChart" width="200" height="200"></canvas>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui horizontal inverted divider">
+                    <h2>Overall Uptime</h2>
+                </div>
+                <div class="ui mini inverted statistics" id="overallUptime">
+                    <div class="orange inverted statistic">
+                        <div class="value upVal">
+                            100.000%
+                        </div>
+                        <div class="label">
+                            Last 24 Hours
+                        </div>
+                    </div>
+                    <div class="olive inverted statistic">
+                        <div class="value upVal">
+                            100.000%
+                        </div>
+                        <div class="label">
+                            Last 7 Days
+                        </div>
+                    </div>
+                    <div class="blue inverted statistic">
+                        <div class="value upVal">
+                            100.000%
+                        </div>
+                        <div class="label">
+                            Last 30 Days
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="ui horizontal inverted divider">
+            Status Page by RedBlue
+        </footer>
+    </div>
+</div>
+<canvas id="canvas" width="1950" height="800"></canvas>
+<canvas id="canvasbg" width="1950" height="800"></canvas>
+</div>
+{{end -}}

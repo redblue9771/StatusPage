@@ -1,0 +1,7 @@
+baseURL = "https://status.redblue.fun/"
+hasCJKLanguage = true
+languageCode = "zh-cmn-Hans"
+title = "RedBlue's Stauts"
+assetDir = "static"
+
+[taxonomies]
