@@ -1,18 +1,15 @@
 {{- define "main"}}
 <div id="root">
-    <header>
+    <div id="main">
         <a href="https://redblue.fun" target="_blank"><img src="/img/logo.png" class="logo"></a>
-    </header>
-    <p>Refreshing in <span id="fresh">60</span> secs…</p>
-    <main>
         <div class="ui horizontal inverted divider">
             <h2>Monitors</h2>
         </div>
-        <table class="ui very basic collapsing celled inverted table unstackable" id="monitors">
+        <table class="ui very basic collapsing celled inverted table unstackable">
             <thead>
                 <tr>
                     <th>Status</th>
-                    <th>Last 7 Days</th>
+                    <th>Last 24 Hours</th>
                     <th>Name</th>
                 </tr>
             </thead>
@@ -45,43 +42,36 @@
                 </div>
                 <div class="ui mini inverted statistics" id="overallUptime">
                     <div class="orange inverted statistic">
-                        <div class="value">
+                        <div class="value upVal">
                             100.000%
                         </div>
                         <div class="label">
                             Last 24 Hours
                         </div>
-                        <div class="down"></div>
                     </div>
                     <div class="olive inverted statistic">
-                        <div class="value">
+                        <div class="value upVal">
                             100.000%
                         </div>
                         <div class="label">
                             Last 7 Days
                         </div>
-                        <div class="down"></div>
                     </div>
                     <div class="blue inverted statistic">
-                        <div class="value">
+                        <div class="value upVal">
                             100.000%
                         </div>
                         <div class="label">
                             Last 30 Days
                         </div>
-                        <div class="down"></div>
                     </div>
                 </div>
-                <div class="ui horizontal inverted divider">
-                    <h2>Latest Downtime</h2>
-                </div>
-                <p id="downtime"></p>
             </div>
         </div>
         <footer class="ui horizontal inverted divider">
             Status Page by RedBlue
         </footer>
-    </main>
+    </div>
     <canvas id="canvas" width="1950" height="800"></canvas>
     <canvas id="canvasbg" width="1950" height="800"></canvas>
 </div>

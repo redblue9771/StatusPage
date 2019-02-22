@@ -1,7 +1,7 @@
 baseURL = "https://status.redblue.fun/"
 hasCJKLanguage = true
 languageCode = "zh-cmn-Hans"
-title = "RedBlue's Stauts"
+title = "RedBlue's Status"
 assetDir = "static"
 
 [taxonomies]

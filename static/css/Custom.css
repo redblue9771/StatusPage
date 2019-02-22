@@ -47,11 +47,12 @@ body {
     overflow-y: scroll;
 }
 
-#main {
+main {
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
     text-shadow: 0 0 10px white;
+    position: relative;
 }
 
 .logo {
@@ -60,11 +61,7 @@ body {
     margin-bottom: 6vh;
 }
 
-#main h1 {
-    font-size: 3em;
-}
-
-#main>table {
+#monitors {
     margin: 0 auto;
 }
 
@@ -79,12 +76,11 @@ body {
 }
 
 #overallUptime {
-    height: 70%;
     align-items: center !important;
     justify-content: center;
     margin: 0 !important;
 }
 
-#main>table+div {
+#monitors+div {
     position: relative;
 }
