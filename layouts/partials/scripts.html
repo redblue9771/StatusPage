@@ -1,4 +1,3 @@
 {{ $customJs := resources.Get "js/Custom.js" | resources.Minify }}
-{{ $js := slice (resources.Get "js/Chart.min.js") $customJs | resources.Concat "js/bundle.js" | resources.Fingerprint}}
+{{ $js := slice (resources.Get "js/Chart.min.js") (resources.Get "js/newuptime.js") $customJs | resources.Concat "js/bundle.js" | resources.Fingerprint}}
 <script type="text/javascript" src="{{ $js.Permalink }}"></script>
-<script type="text/javascript" src="js/newuptime.js"></script>
