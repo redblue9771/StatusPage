@@ -2,6 +2,7 @@
     $user=$_GET["user"];
     $type=$_GET["type"];
     $id=$_GET["id"];
+    header('Access-Control-Allow-Origin:*'); 
     function getData($curl,$url){
         curl_setopt_array($curl, array(
             CURLOPT_URL => $url,
@@ -40,6 +41,7 @@
                 break;
             }
         }
+        break;
         case 1:
         $url="https://status.uptimerobot.com/api/monitor-page/".$user."/".$id;
         $curl=curl_init();
@@ -53,9 +55,19 @@
                 break;
             }
         }
+        break;
+        case 3:
+        $url="https://status.uptimerobot.com/api/getMonitorList/".$user."?page=1";
+        $curl=curl_init();
+        $err=getData($curl,$url);
+        if($err){
+            echo json_encode(["status"=>false, "message"=>"FormData Error!"]);
+        }
+        break;
         default:
         echo json_encode(["status"=>false, "message"=>"FormData Error!"]);
     }
 
   //  Request URL: https://stats.uptimerobot.com/api/monitor-page/wKLkwH4ZG/782019569
+  // https://status.uptimerobot.com/api/getMonitorList/wKLkwH4ZG?page=1&_=1555989179807
 ?>

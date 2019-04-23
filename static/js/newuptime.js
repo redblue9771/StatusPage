@@ -1,40 +1,43 @@
 getMonitorsByApi();
 
 function getMonitorsByApi() {
-    fetch("https://api.fjut.eu.org/getUptime.php?user=wKLkwH4ZG&type=0").then(res => {
+    // fetch("https://api.fjut.eu.org/getUptime.php?user=wKLkwH4ZG&type=0").then(res => {
+    //     if (res.ok) {
+    //         return res.json();
+    //     } else {
+    //         fetch("https://fjutwzk.heliohost.org/api/getUptime.php?user=wKLkwH4ZG&type=0").then(res1 => {
+    //             if (res1.ok) {
+    //                 return res.json();
+    //             } else {
+    //                 alert("Data acquisition failed, please refresh and try again!");
+    //                 $fresh.textContent = "-";
+    //             }
+    //         }).then(res1 => {
+    //             if (res1.stat === "ok") {
+    //                 renderHTML(res1);
+    //             }
+    //         });
+    //     }
+    // }).then(res => {
+    //     if (res.stat === "ok") {
+    //         renderHTML(res);
+    //     }
+    // });
+    fetch("https://api.fjut.eu.org/getUptime.php?user=wKLkwH4ZG&type=3").then(res => {
         if (res.ok) {
             return res.json();
         } else {
-            fetch("https://fjutwzk.heliohost.org/api/getUptime.php?user=wKLkwH4ZG&type=0").then(res1 => {
-                if (res1.ok) {
-                    return res.json();
-                } else {
-                    alert("Data acquisition failed, please refresh and try again!");
-                    $fresh.textContent = "-";
-                }
-            }).then(res1 => {
-                if (res1.stat === "ok") {
-                    renderHTML(res1);
-                }
-            });
+            alert("Data acquisition failed, please refresh and try again!");
+            $fresh.textContent = "-";
         }
     }).then(res => {
-        if (res.stat === "ok") {
             renderHTML(res);
-        }
     });
 }
 
 function renderHTML(res = {}) {
-    let domainStatus = {
-            "0": "Paused",
-            "1": "Not Checked Yet",
-            "2": "Up",
-            "8": "Seems Down",
-            "9": "Down",
-        },
-        statusFlag = {
-            "Up": "green",
+    let statusFlag = {
+            "success": "green",
             "Down": "yellow",
             "Seems Down": "orange",
             "Paused": "black",
@@ -49,15 +52,14 @@ function renderHTML(res = {}) {
         $overallUptimeDown = $overallUptime.getElementsByClassName("down"),
         $downTime = document.getElementById("downtime"),
         html = '';
-    res = res.psp;
-    for (const item of res.monitors) {
-        html += '<tr><td><span class="ui ' + statusFlag[domainStatus[item.status]] + ' empty circular label"></span> ' +
-            domainStatus[item.status] + '</td><td>' + item.oneWeekRange.ratio + '%</td><td class="selectable"><a href="https://' + item.friendly_name + '" target="_blank">'+ item.friendly_name + '</a></td><tr>';
+    for (const item of res.psp.monitors) {
+        html += '<tr><td><span class="ui ' + statusFlag[item.statusClass] + ' empty circular label"></span> ' +
+            item.statusClass + '</td><td>' + item.weeklyRatio.ratio + '%</td><td class="selectable"><a href="https://' + item.name + '" target="_blank">'+ item.name + '</a></td><tr>';
     }
     $table.innerHTML = html;
     var data = {
         datasets: [{
-            data: [res.pspStats.counts.up, res.pspStats.counts.down, res.pspStats.counts.pasued],
+            data: [res.statistics.counts.up, res.statistics.counts.down, res.statistics.counts.pasued],
             backgroundColor: [
                 '#448aff',
                 '#f44336',
@@ -81,10 +83,10 @@ function renderHTML(res = {}) {
         }
     });
     lastName.forEach((v, i) => {
-        $overallUptimeValue[i].textContent = res.pspStats.ratios[v].ratio + '%';
-        $overallUptimeDown[i].textContent = res.pspStats.downDurations[v] + " mins";
+        $overallUptimeValue[i].textContent = res.statistics.uptime[v].ratio + '%';
+        $overallUptimeDown[i].textContent = res.statistics.uptime[v].downtime;
     })
-    $downTime.textContent = res.latestDownTimeStr;
+    $downTime.textContent = res.statistics.latest_downtime;
     setTimeout('getMonitorsByApi()', 61000);
     let $fresh = document.getElementById("fresh"),
         i = 60,
