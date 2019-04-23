@@ -31,7 +31,7 @@ function getMonitorsByApi() {
             $fresh.textContent = "-";
         }
     }).then(res => {
-            renderHTML(res);
+        renderHTML(res);
     });
 }
 
@@ -54,7 +54,7 @@ function renderHTML(res = {}) {
         html = '';
     for (const item of res.psp.monitors) {
         html += '<tr><td><span class="ui ' + statusFlag[item.statusClass] + ' empty circular label"></span> ' +
-            item.statusClass + '</td><td>' + item.weeklyRatio.ratio + '%</td><td class="selectable"><a href="https://' + item.name + '" target="_blank">'+ item.name + '</a></td><tr>';
+            item.statusClass + '</td><td>' + item.weeklyRatio.ratio + '%</td><td class="selectable"><a href="https://' + item.name + '" target="_blank">' + item.name + '</a></td><tr>';
     }
     $table.innerHTML = html;
     var data = {
@@ -82,10 +82,20 @@ function renderHTML(res = {}) {
             }
         }
     });
-    lastName.forEach((v, i) => {
-        $overallUptimeValue[i].textContent = res.statistics.uptime[v].ratio + '%';
-        $overallUptimeDown[i].textContent = res.statistics.uptime[v].downtime;
-    })
+
+    {
+        let i = 0;
+        for (const key in res.statistics.uptime) {
+            if (res.statistics.uptime.hasOwnProperty(key)) {
+                const element = res.statistics.uptime[key];
+                $overallUptimeValue[i].textContent = element.ratio + '%';
+                $overallUptimeDown[i].textContent = element.downtime;
+                i++;
+            }
+        }
+    }
+
+
     $downTime.textContent = res.statistics.latest_downtime;
     setTimeout('getMonitorsByApi()', 61000);
     let $fresh = document.getElementById("fresh"),
