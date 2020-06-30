@@ -1,9 +1,15 @@
 {{- define "main"}}
 <div id="root">
     <header>
-        <a href="https://redblue.fun" target="_blank"><img src="/img/logo.png" class="logo"></a>
+        <a href="https://redblue.fun" target="_blank">
+            <img src="/img/logo.png" class="logo" />
+        </a>
     </header>
-    <p>Refreshing in <span id="fresh">60</span> secs…</p>
+    <p>
+        Refreshing in
+        <span id="fresh">60</span>
+        secs…
+    </p>
     <main>
         <div class="ui horizontal inverted divider">
             <h2>Monitors</h2>
@@ -13,21 +19,21 @@
                 <thead>
                     <tr>
                         <th>Status</th>
-                        <th>Last 7 Days</th>
                         <th>Name</th>
+                        <th>Last 24 Hours</th>
+                        <th>Last 7 Days</th>
+                        <th>Last 30 Days</th>
+                        <th>Last 45 Days</th>
                     </tr>
                 </thead>
                 <tbody id="domainList">
                     <tr>
-                        <td>
-                            Get…
-                        </td>
-                        <td>
-                            Loading…
-                        </td>
-                        <td>
-                            Loading…
-                        </td>
+                        <td>Fetching…</td>
+                        <td>Loading…</td>
+                        <td>Loading…</td>
+                        <td>Loading…</td>
+                        <td>Loading…</td>
+                        <td>Loading…</td>
                     </tr>
                 </tbody>
             </table>
@@ -46,42 +52,38 @@
                     <h2>Overall Uptime</h2>
                 </div>
                 <div class="ui mini inverted statistics" id="overallUptime">
-                    <div class="orange inverted statistic">
-                        <div class="value">
-                            100.000%
-                        </div>
-                        <div class="label">
-                            Last 24 Hours
-                        </div>
+                    <div class="green inverted statistic">
+                        <div class="value">- %</div>
+                        <div class="label">Last 24 Hours</div>
                         <div class="down"></div>
                     </div>
                     <div class="olive inverted statistic">
-                        <div class="value">
-                            100.000%
-                        </div>
-                        <div class="label">
-                            Last 7 Days
-                        </div>
+                        <div class="value">- %</div>
+                        <div class="label">Last 7 Days</div>
                         <div class="down"></div>
                     </div>
                     <div class="blue inverted statistic">
-                        <div class="value">
-                            100.000%
-                        </div>
-                        <div class="label">
-                            Last 30 Days
-                        </div>
+                        <div class="value">- %</div>
+                        <div class="label">Last 30 Days</div>
+                        <div class="down"></div>
+                    </div>
+                    <div class="red inverted statistic">
+                        <div class="value">- %</div>
+                        <div class="label">Last 45 Days</div>
                         <div class="down"></div>
                     </div>
                 </div>
                 <div class="ui horizontal inverted divider">
                     <h2>Latest Downtime</h2>
                 </div>
-                <p id="downtime"></p>
+                <p id="downtime">-</p>
             </div>
         </div>
-        <div class="ui horizontal inverted divider">
-            Status Page by RedBlue
+        <div class="ui horizontal inverted divider">About Status Page</div>
+        <div class="ui">Copyright © 2017 - 2020 RedBlue.&nbsp;All Rights Reserved.</div>
+        <div class="ui">
+            <a href="https://redblue.fun" target="_blank">https://redblue.fun</a>
+            👈
         </div>
     </main>
     <canvas id="canvas" width="1950" height="800"></canvas>
